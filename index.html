@@ -3,370 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OnSight: A Real-Time Computational Pathology Companion</title>
+    <title>OnSight | A Real-Time Computational Pathology Companion</title>
     <style>
-        /* --- General Setup & Typography --- */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Roboto:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400&display=swap');
 
         :root {
-            --primary-color: #0d1117; /* Dark background */
-            --secondary-color: #161b22; /* Lighter card background */
-            --accent-color: #3B82F6; /* A strong, clear blue */
-            --accent-hover-color: #2563EB;
-            --text-color: #c9d1d9; /* Light grey for text */
-            --heading-color: #ffffff; /* White for headings */
-            --border-color: #30363d;
-            --highlight-pink: rgba(231, 146, 239, 0.8);
-            --highlight-purple: rgba(121, 126, 243, 0.8);
+            --dark-navy: #0a0f1d;
+            --navy-bg: #101629;
+            --light-navy-bg: #1f2a4a;
+            --slate: #8892b0;
+            --light-slate: #ccd6f6;
+            --white: #e6f1ff;
+            --accent-cyan: #64ffda;
+            --accent-cyan-tint: rgba(100, 255, 218, 0.1);
+            --heading-font: 'Inter', sans-serif;
+            --body-font: 'Inter', sans-serif;
+            --mono-font: 'Roboto Mono', monospace;
+            --shadow-color: rgba(0,0,0,0.5);
+            --nav-height: 80px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: var(--nav-height);
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--primary-color);
-            color: var(--text-color);
+            font-family: var(--body-font);
+            background-color: var(--dark-navy);
+            color: var(--slate);
             line-height: 1.7;
-            font-weight: 300;
+            font-size: 18px;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--heading-color);
-            font-weight: 600;
-            line-height: 1.3;
-        }
+        h1, h2, h3, h4 { font-family: var(--heading-font); font-weight: 700; color: var(--light-slate); line-height: 1.2; }
+        h2 { font-size: clamp(28px, 5vw, 42px); display: flex; align-items: center; gap: 15px; margin-bottom: 40px; white-space: nowrap; }
+        h2::after { content: ''; display: block; width: 100%; height: 1px; background-color: var(--light-navy-bg); }
 
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.2rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color);}
-        h3 { font-size: 1.5rem; color: var(--accent-color); margin-bottom: 15px;}
+        /* --- Animations on Scroll --- */
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Navigation Bar --- */
+        .navbar { background: rgba(10, 15, 29, 0.85); backdrop-filter: blur(10px); padding: 0 40px; position: fixed; width: 100%; top: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; transition: top 0.3s ease-in-out; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .navbar .logo { font-family: var(--mono-font); font-size: 1.5rem; color: var(--accent-cyan); text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: var(--light-slate); text-decoration: none; font-size: 0.9rem; font-family: var(--mono-font); transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-cyan); }
+
+        /* --- Hero Section --- */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: var(--nav-height) 0; }
+        .hero h1 { font-size: clamp(40px, 8vw, 80px); margin: 0; color: var(--white); font-weight: 700; }
+        .hero h3 { font-size: clamp(20px, 5vw, 32px); color: var(--accent-cyan); font-family: var(--mono-font); margin-top: 10px; }
+        .hero .subtitle { max-width: 600px; margin-top: 30px; font-size: 1.1rem; }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 4px; text-decoration: none; font-family: var(--mono-font); font-weight: 400; transition: all 0.3s ease; cursor: pointer; border: 1px solid var(--accent-cyan); color: var(--accent-cyan); background: transparent; font-size: 1rem; margin-top: 40px; }
+        .btn:hover { background-color: var(--accent-cyan-tint); transform: translateY(-3px); }
+
+        /* --- Main Sections --- */
+        section { padding: 100px 0; }
         
-        p { margin-bottom: 1rem; }
+        /* --- Features Section (Redesigned with SVG Icons) --- */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .feature-card { background-color: var(--navy-bg); padding: 30px; border-radius: 6px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -15px var(--shadow-color); }
+        .feature-card .icon { color: var(--accent-cyan); margin-bottom: 20px; width: 48px; height: 48px; }
+        .feature-card h3 { font-size: 1.2rem; color: var(--white); margin-bottom: 10px; }
+        
 
-        section {
-            padding: 60px 0;
-        }
-        
-        /* --- Header & Hero Section --- */
-        .hero {
-            height: 100vh;
-            background: var(--primary-color) url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%2310151c" fill-opacity="0.4"%3E%3Cpath opacity=".5" d="M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z"/%3E%3Cpath d="M6 5V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h-1V95h-9V86h-1V95h-9V86h-1V95h-9V86h-1V95h-9V86h-1V95h-9V86h-1V95h-9V86h-1V95h-9V86h-1V95H6v-9H5V6h95V5h1v90h-1V6H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--highlight-purple), var(--highlight-pink));
-            opacity: 0.1;
-            mix-blend-mode: screen;
-        }
+        /* --- Video Demo Section --- */
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 8px; box-shadow: 0 20px 50px var(--shadow-color); }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .hero-content {
-            z-index: 1;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .hero h1 {
-            color: var(--heading-color);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            font-weight: 300;
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            color: var(--text-color);
-        }
-
-        /* --- Buttons --- */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: #fff;
-            font-size: 1.1rem;
-        }
-        .btn-primary:hover {
-            background-color: var(--accent-hover-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
-        }
-        
-        /* --- Features Section --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .feature-card {
-            background: var(--secondary-color);
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .feature-card .icon {
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.3rem;
-            color: var(--heading-color);
-            margin-bottom: 10px;
-        }
-        
-        /* --- Applications Section --- */
+/* --- Applications Section with a Clean, Separated Layout --- */
         .application-item {
-            display: flex;
-            gap: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
+            gap: 50px; /* Adds a healthy space between the columns */
             align-items: center;
-            margin-bottom: 50px;
-            background: var(--secondary-color);
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .application-item:nth-child(even) {
-            flex-direction: row-reverse;
+            margin-bottom: 100px;
         }
 
-        .application-text {
-            flex: 1;
-        }
-        
-        .application-visual {
-            flex: 1;
-            background-color: #000;
-            border-radius: 5px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-style: italic;
-            border: 2px dashed var(--border-color);
-        }
-
-        /* --- Publication Section --- */
-        #publication {
-            background-color: var(--secondary-color);
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        #publication blockquote {
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--text-color);
-            border-left: 3px solid var(--accent-color);
-            padding-left: 20px;
+        /* We don't need special column rules for the base classes anymore */
+        .app-text {
             text-align: left;
         }
+
+        /* Remove the background from the text paragraph for a cleaner look */
+        .app-text p {
+            background-color: transparent;
+            padding: 0;
+            box-shadow: none;
+            color: var(--slate); /* Use the standard paragraph text color */
+        }
+
+        /* --- Styles for alternating items (image on left, text on right) --- */
+        .application-item:nth-child(even) {
+            direction: rtl; /* This is a clever trick to reverse the column order */
+        }
+
+        .application-item:nth-child(even) .app-text {
+            direction: ltr; /* Reset text direction so it reads normally */
+            text-align: right;
+        }
+        .workflow-item img {
+        width: 100%;       /* make image smaller */
+        max-width: 2000px; /* prevents it from being too big */
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 5px;
         
+
+        }
+        /* The browser mockup style remains the same */
+        .browser-mockup {
+        border: 2px solid var(--light-navy-bg);
+        border-radius: 8px;
+        background: #000;
+        padding: 25px 10px 10px 10px;
+        position: relative;
+        box-shadow: 0 20px 50px var(--shadow-color);
+        max-width: 500px;
+        margin: 0 auto;
+        aspect-ratio: 12 / 9; /* Keeps all boxes consistent */
+        overflow: hidden;
+        }
+
+        .browser-mockup img {
+        width: 100%;
+        height: 100%;   /* 🔑 Forces stretching to fill height */
+        object-fit: fill; /* 🔑 Stretches the image instead of preserving ratio */
+        border-radius: 4px;
+        display: block;
+        }
+
+
+        /* --- FAQ Accordion --- */
+        .faq-accordion details { background: var(--navy-bg); border-radius: 4px; margin-bottom: 10px; border: 1px solid var(--light-navy-bg); }
+        .faq-accordion summary { cursor: pointer; padding: 20px; font-weight: 600; color: var(--light-slate); list-style: none; display: flex; justify-content: space-between; align-items: center;}
+        .faq-accordion summary::-webkit-details-marker { display: none; }
+        .faq-accordion summary::after { content: '+'; font-size: 1.5rem; transition: transform 0.2s ease-in-out; }
+        .faq-accordion details[open] summary::after { transform: rotate(45deg); }
+        .faq-accordion .faq-content { padding: 0 20px 20px 20px; border-top: 1px solid var(--light-navy-bg); }
+
+        /* --- Final Call to Action Section --- */
+        .cta-section { text-align: center; padding: 80px 0; }
+        .cta-section h2 { justify-content: center; font-size: clamp(24px, 5vw, 36px); }
+        .cta-section p { max-width: 600px; margin: 20px auto 30px auto; }
+
         /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            font-size: 0.9rem;
-        }
-        
-        /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* --- Responsive --- */
-        @media(max-width: 768px) {
-            .hero { text-align: left; align-items: flex-start; justify-content: center; }
-            .hero-content { padding: 0 30px; }
-            h1 { font-size: 2.5rem; }
-            .hero .subtitle { font-size: 1.1rem; }
-            .application-item, .application-item:nth-child(even) {
-                flex-direction: column;
-            }
-            .application-visual {
-                width: 100%;
-                height: 250px;
-            }
+        footer { text-align: center; padding: 50px 30px; font-family: var(--mono-font); font-size: 0.8rem; color: var(--slate); background-color: var(--navy-bg); }
+        .footer-logo-bar { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
+        .footer-logo-bar img { height: 50px; max-width: 150px; object-fit: contain; opacity: 0.6; filter: grayscale(100%); transition: filter 0.3s ease, opacity 0.3s ease; }
+        .footer-logo-bar img:hover { opacity: 1; filter: grayscale(0%); }
+
+        /* --- Responsive Fixes --- */
+        @media (max-width: 768px) {
+            .navbar .nav-links { display: none; }
+            .workflow-grid { grid-template-columns: 1fr; }
+            .application-item,
+            .application-item:nth-child(even) { display: flex; flex-direction: column; gap: 20px; }
+            .app-text, .application-item:nth-child(even) .app-text { text-align: left; }
+            .app-text p { background-color: transparent; padding: 0; box-shadow: none; }
         }
 
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>OnSight</h1>
-            <p class="subtitle">A real-time, platform-agnostic computational pathology companion for histopathology. Accelerate your analysis, enhance objectivity, and integrate AI into your workflow seamlessly.</p>
-            <a href="https://drive.google.com/drive/folders/12OlcrfU7RBHSfTWlAusk9DsoY3P-waey" target="_blank" class="btn btn-primary">Download OnSight (.exe)</a>
+    <nav class="navbar">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">OnSight</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#workflow">Workflow</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#applications">Use-Cases</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
     <main>
+        <section class="hero">
+            <div class="container">
+                <div class="animate-on-scroll"><h3>A Real-Time Pathology Companion.</h3></div>
+                <div class="animate-on-scroll" style="transition-delay: 100ms;"><h1>Bring AI Insights Directly To Your Workflow.</h1></div>
+                <div class="animate-on-scroll" style="transition-delay: 200ms;"><p class="subtitle">OnSight is a standalone, vendor-agnostic software that bridges the gap between powerful AI models and the daily workflow of pathologists, offering real-time analysis without compromising data privacy.</p></div>
+                <div class="animate-on-scroll" style="transition-delay: 300ms;"><a href="https://drive.google.com/drive/folders/12OlcrfU7RBHSfTWlAusk9DsoY3P-waey" target="_blank" class="btn">Download v1.0</a></div>
+            </div>
+        </section>
+
         <section id="intro">
             <div class="container">
-                <h2>Bridging the Gap in Digital Pathology</h2>
-                <p>Precise microscopic examination is paramount for disease diagnosis, yet it's often prone to subjective variability. While artificial intelligence shows immense promise, real-world deployment is hindered by proprietary software, complex integrations, and data privacy concerns.</p>
-                <p><strong>OnSight is the solution.</strong> It's a freely accessible, standalone software that provides real-time AI inferences directly on your screen as you work. By analyzing a region of your display, OnSight bypasses WSI format incompatibilities and the need for complex APIs, allowing for safe, cost-effective integration into any existing research or clinical workflow.</p>
+                <h2 class="animate-on-scroll">The Adoption Barrier</h2>
+                <div class="animate-on-scroll">
+                    <p>Artificial intelligence holds immense potential to enhance objectivity and efficiency in histopathology. Yet, its integration into clinical practice is critically stalled. Pathologists face a fragmented landscape of proprietary WSI formats, incompatible viewers, and data security hurdles that make deploying AI tools a complex, expensive, and often prohibitive endeavor. <strong>The best AI model is useless if it can't be used.</strong></p>
+                </div>
             </div>
         </section>
 
-        <section id="features" style="background-color: var(--secondary-color);">
+        <section id="features" style="background-color: var(--navy-bg);">
             <div class="container">
-                <h2>Why Choose OnSight?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="icon">🖥️</div>
-                        <h3>Platform Agnostic</h3>
-                        <p>Works with any digital slide viewer and any WSI file format. If you can see it on your screen, OnSight can analyze it.</p>
+                <h2 class="animate-on-scroll">A Radically Simple Approach</h2>
+                <div class="feature-grid">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 8H2V20H16V18H4V8ZM20.41 4.59L15.41 9.59L12.41 6.59L8 11H22V2H18L20.41 4.59ZM20 4.41V7H17.59L15.41 4.83L12.41 7.83L9.41 4.83L3.41 10.83H20V4.41Z"/></svg></div>
+                        <h3>Vendor-Agnostic</h3>
+                        <p>Works with any slide viewer on any OS. If it's on your screen, OnSight can analyze it. No APIs, no plugins needed.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon">🔒</div>
-                        <h3>100% Local & Secure</h3>
-                        <p>All analysis happens "on-site" on your local computer. No sensitive patient data is ever transferred externally, ensuring complete privacy.</p>
+                    <div class="feature-card animate-on-scroll" style="transition-delay: 100ms;">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 12H17C17 15.45 14.94 18.68 12 19.93V12H5V6.3L12 3.19V12Z"/></svg></div>
+                        <h3>100% Secure & Private</h3>
+                        <p>All processing happens locally on your machine. Patient data and proprietary images are never transmitted or uploaded.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon">⚡</div>
-                        <h3>Real-Time Inference</h3>
-                        <p>Get instant feedback from powerful AI models as you pan and zoom. OnSight is optimized for consumer-grade hardware.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">⚙️</div>
-                        <h3>Zero Integration</h3>
-                        <p>Runs as a single executable file with an intuitive GUI. No coding, no complex setup, and no dependencies to manage.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">🔬</div>
-                        <h3>Expert-in-the-Loop</h3>
-                        <p>You remain in control. You decide which AI model to use and which tissue regions to apply it to, ensuring maximum relevance.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">📈</div>
-                        <h3>Quantitative & Reproducible</h3>
-                        <p>Use the "aggregate mode" and calibration tools to generate objective, quantifiable results (e.g., mitoses per mm²) for reports and research.</p>
+                    <div class="feature-card animate-on-scroll" style="transition-delay: 200ms;">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15 5H9V3H15V5M12 1C9.24 1 7 3.24 7 6V8H5C3.9 8 3 8.9 3 10V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V10C21 8.9 20.1 8 19 8H17V6C17 3.24 14.76 1 12 1ZM12 17C10.9 17 10 16.1 10 15C10 13.9 10.9 13 12 13C13.1 13 14 13.9 14 15C14 16.1 13.1 17 12 17Z"/></svg></div>
+                        <h3>Real-Time Feedback</h3>
+                        <p>Leverages local GPU/CPU power to deliver live AI inferences as you navigate slides, enabling an interactive workflow.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="applications">
+        <section id="workflow">
             <div class="container">
-                <h2>Proven Applications</h2>
-                <p>OnSight comes with a suite of pre-trained models to assist with common histopathological tasks. Users can easily switch between models to fit their needs.</p>
+                <h2 class="animate-on-scroll">The OnSight Workflow</h2>
+                <div class="workflow-grid animate-on-scroll">
+                    <figure class="workflow-item">
+                        <img src="Images/Institution/workflow_all.png" alt="Pathologist viewing a slide on a computer."/>
+                        <figcaption>The Onsight companion offers a solution by enabling real-time, local AI inference directly from the screen capture of any standard WSI viewer. The OnSight workflow is initiated when the user captures a Region of Interest within any standard slide viewer. The raw image data from this ROI is then processed by OnSight's AI algorithms, and the real-time output is displayed as an overlay on the graphical user interface. The inference results overload in real time and the software runs locally to ensure privacy.
+</figcaption>
+                    </figure>
 
-                <div class="application-item">
-                    <div class="application-text">
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" style="background-color: var(--navy-bg);">
+            <div class="container">
+                <h2 class="animate-on-scroll">See It In Action</h2>
+                <div class="video-wrapper animate-on-scroll">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+<section id="applications">
+            <div class="container">
+                <h2 class="animate-on-scroll">Example Use Cases</h2>
+                <p class="animate-on-scroll" style="max-width: 800px; margin-bottom: 80px;">
+                    OnSight comes with a suite of pre-trained models to assist with common histopathological tasks. Users can easily switch between models to fit their needs.
+                </p>
+                
+                <div class="application-item animate-on-scroll">
+                    <div class="app-text">
                         <h3>Brain Tumor Classification</h3>
-                        <p>Utilizes a powerful Vision Transformer (ViT) to provide real-time classification of common brain tumor patterns (glial, meningiothelial, epithelial, schwannian) on H&E-stained slides, guiding initial diagnosis.</p>
+                        <p>Utilizes a powerful Vision Transformer (ViT) to provide real-time classification of common brain tumor patterns (glial, meningiothelial, etc.) on H&E slides, guiding initial diagnosis.</p>
                     </div>
-                    <div class="application-visual">
-                        <span>GIF/Image of Classification in Action</span>
-                    </div>
-                </div>
-
-                <div class="application-item">
-                    <div class="application-text">
-                        <h3>Mitosis Detection & Quantification</h3>
-                        <p>Employs a RetinaNet object detection model to automatically identify and highlight mitotic figures. Users can adjust the confidence threshold in real-time to balance sensitivity and specificity for accurate tumor grading.</p>
-                    </div>
-                    <div class="application-visual">
-                        <span>GIF/Image of Mitosis Detection Overlay</span>
+                    <div class="app-mockup">
+                        <div class="browser-mockup">
+                            <img src="Images/function/classification.png" alt="Tumor classification screenshot">
+                        </div>
                     </div>
                 </div>
 
-                <div class="application-item">
-                    <div class="application-text">
-                        <h3>Immunohistochemistry (IHC) Quantification</h3>
+                <div class="application-item animate-on-scroll">
+                    <div class="app-text">
+                        <h3>Automated Mitosis Counting</h3>
+                        <p>Objectify tumor grading by automatically detecting and counting mitotic figures in real-time. Calibrate results to physical area (mm²) for reproducible, report-ready metrics.</p>
+                    </div>
+                    <div class="app-mockup">
+                        <div class="browser-mockup">
+                             <img src="Images/function/Mitosis.png" alt="Mitosis detection screenshot">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="application-item animate-on-scroll">
+                    <div class="app-text">
+                        <h3>IHC Quantification</h3>
                         <p>A YOLO-based model segments and counts Ki-67 positive and negative nuclei, providing a rapid and objective proliferation index. Includes controls for overlay transparency to aid interpretation.</p>
                     </div>
-                    <div class="application-visual">
-                        <span>GIF/Image of Ki-67 Segmentation</span>
+                    <div class="app-mockup">
+                        <div class="browser-mockup">
+                            <img src="Images/function/Ki67.png" alt="IHC Ki67 quantification screenshot">
+                        </div>
                     </div>
                 </div>
-                
-                <div class="application-item">
-                    <div class="application-text">
+
+                <div class="application-item animate-on-scroll">
+                    <div class="app-text">
                         <h3>Interactive AI Chat</h3>
                         <p>Integrates a Vision-Language Model (HuaTuo) that supports natural-language queries about the current image. Ask questions like, "What feature makes this glial?" to get deeper, interpretable insights from the AI.</p>
                     </div>
-                    <div class="application-visual">
-                         <span>Screenshot of Vision-Language Chat</span>
+                    <div class="app-mockup">
+                        <div class="browser-mockup">
+                            <img src="Images/function/Chat.png" alt="Interactive AI chat screenshot">
+                        </div>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <section id="publication">
+        <section id="team" style="background-color: var(--navy-bg);">
+            <div class="container" style="text-align: center;">
+                <h2 class="animate-on-scroll" style="justify-content: center;">The Team</h2>
+                <p class="animate-on-scroll">OnSight is proudly developed by the Diamandis Lab, a multidisciplinary team of pathologists, scientists, and engineers.</p>
+                <div class="animate-on-scroll" style="margin-top: 40px;">
+                    <a href="https://www.diamandis.org/" target="_blank" class="btn">Meet The Researchers</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container" style="max-width: 800px;">
+                <h2 class="animate-on-scroll">Common Questions</h2>
+                <div class="faq-accordion animate-on-scroll">
+                    <details>
+                        <summary>What are the system requirements?</summary>
+                        <div class="faq-content"><p>For optimal real-time performance, a Windows PC with a dedicated NVIDIA GPU (RTX 20-series or newer) is recommended. The software remains functional on CPU-only systems with a slight delay in inference.</p></div>
+                    </details>
+                    <details>
+                        <summary>Can I use my own AI models?</summary>
+                        <div class="faq-content"><p>The current version is distributed with the pre-packaged, validated models. We are actively working on a framework to allow users to easily integrate their own custom models in future releases.</p></div>
+                    </details>
+                    <details>
+                        <summary>Is this approved for clinical diagnostic use?</summary>
+                        <div class="faq-content"><p>No. OnSight is strictly provided as a tool for research, educational, and investigational purposes. It is not a medical device and is not intended for primary diagnosis.</p></div>
+                    </details>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
             <div class="container">
-                <h2>Grounded in Research</h2>
-                <blockquote>
-                    "Despite rapid advances... the histopathological examination of tissue... has remained a cornerstone for modern disease classification... We believe OnSight removes numerous critical barriers to facilitate accelerated adoption of machine learning tools in histopathology."
-                </blockquote>
-                <p>OnSight was developed at the University of Toronto and University Health Network. For a detailed description of the methods, validation, and models, please refer to our publication.</p>
-                <a href="#" class="btn btn-primary" style="background-color: #555; pointer-events: none;">Link to Publication (Coming Soon)</a>
+                <h2 class="animate-on-scroll">Ready to Augment Your Workflow?</h2>
+                <p class="animate-on-scroll">Download the latest version of OnSight for Windows. It’s free, secure, and ready to use in minutes.</p>
+                <a href="https://drive.google.com/drive/folders/12OlcrfU7RBHSfTWlAusk9DsoY3P-waey" target="_blank" class="btn animate-on-scroll" style="padding: 20px 40px; font-size: 1.2rem;">Download OnSight</a>
             </div>
         </section>
     </main>
-
+    
     <footer>
         <div class="container">
-            <p>OnSight is provided as a free tool for research and educational purposes.</p>
-            <p>Developed at the University of Toronto & University Health Network.</p>
             <p>&copy; 2025 Phedias Diamandis, et al. All Rights Reserved.</p>
+            <p>A collaboration between the University Health Network & the University of Toronto</p>
+            <div class="footer-logo-bar">
+                <img src="Images/Institution/lmp.png" alt="University of Toronto LMP Logo">
+                <img src="Images/Institution/princess.png" alt="Princess Margaret Cancer Centre Logo">
+                <img src="Images/Institution/uhn.png" alt="University Health Network Logo">
+            </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener("scroll", function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > navbar.offsetHeight) {
+                    navbar.style.top = `-${navbar.offsetHeight}px`;
+                } else {
+                    navbar.style.top = "0";
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, false);
+        });
+    </script>
 </body>
 </html>
