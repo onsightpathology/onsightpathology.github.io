@@ -7,6 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400&display=swap');
 
+
         :root {
             --dark-navy: #0a0f1d;
             --navy-bg: #101629;
@@ -57,7 +58,18 @@
         .nav-links a:hover { color: var(--accent-cyan); }
 
         /* --- Hero Section --- */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: var(--nav-height) 0; }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: var(--nav-height) 0;
+            /* --- This is the updated line --- */
+            background-image: linear-gradient(rgba(10, 15, 29, 0.85), rgba(10, 15, 29, 0.85)), url('Images/Institution/sample_icon.ico');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
         .hero h1 { font-size: clamp(40px, 8vw, 80px); margin: 0; color: var(--white); font-weight: 700; }
         .hero h3 { font-size: clamp(20px, 5vw, 32px); color: var(--accent-cyan); font-family: var(--mono-font); margin-top: 10px; }
         .hero .subtitle { max-width: 600px; margin-top: 30px; font-size: 1.1rem; }
@@ -195,7 +207,7 @@
                 <div class="animate-on-scroll"><h3>A Real-Time Pathology Companion.</h3></div>
                 <div class="animate-on-scroll" style="transition-delay: 100ms;"><h1>Bring AI Insights Directly To Your Workflow.</h1></div>
                 <div class="animate-on-scroll" style="transition-delay: 200ms;"><p class="subtitle">OnSight is a standalone, vendor-agnostic software that bridges the gap between powerful AI models and the daily workflow of pathologists, offering real-time analysis without compromising data privacy.</p></div>
-                <div class="animate-on-scroll" style="transition-delay: 300ms;"><a href="https://drive.google.com/drive/folders/12OlcrfU7RBHSfTWlAusk9DsoY3P-waey" target="_blank" class="btn">Download v1.0</a></div>
+                <div class="animate-on-scroll" style="transition-delay: 300ms;"><a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight/OnSightPathologyInstaller.exe" target="_blank" class="btn">Download v1.0</a></div>
             </div>
         </section>
 
@@ -247,7 +259,7 @@
 
         <section id="demo" style="background-color: var(--navy-bg);">
             <div class="container">
-                <h2 class="animate-on-scroll">Demo Note: Wait for the replacement of the real demo</h2>
+                <h2 class="animate-on-scroll">See It In Action</h2>
                 <div class="video-wrapper animate-on-scroll">
                     <iframe src="https://www.youtube.com/embed/LL8Cq7F3efg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
@@ -346,7 +358,7 @@
             <div class="container">
                 <h2 class="animate-on-scroll">Ready to Augment Your Workflow?</h2>
                 <p class="animate-on-scroll">Download the latest version of OnSight for Windows. It’s free, secure, and ready to use in minutes.</p>
-                <a href="https://drive.google.com/drive/folders/12OlcrfU7RBHSfTWlAusk9DsoY3P-waey" target="_blank" class="btn animate-on-scroll" style="padding: 20px 40px; font-size: 1.2rem;">Download OnSight</a>
+                <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight/OnSightPathologyInstaller.exe" target="_blank" class="btn animate-on-scroll" style="padding: 20px 40px; font-size: 1.2rem;">Download OnSight</a>
             </div>
         </section>
     </main>
@@ -394,9 +406,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
-
