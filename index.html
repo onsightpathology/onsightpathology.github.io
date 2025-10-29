@@ -292,8 +292,186 @@ s              <li><a href="#team">Team</a></li>
                     <div class="feature-card animate-on-scroll" style="transition-delay: 200ms;">
                         <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15 5H9V3H15V5M12 1C9.24 1 7 3.24 7 6V8H5C3.9 8 3 8.9 3 10V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V10C21 8.9 20.1 8 19 8H17V6C17 3.24 14.76 1 12 1ZM12 17C10.9 17 10 16.1 10 15C10 13.9 10.9 13 12 13C13.1 13 14 13.9 14 15C14 16.1 13.1 17 12 17Z"/></svg></div>
                         <h3>Real-Time Feedback</h3>
-                        <p>Leverages local GPU/CPU power to deliver live AI inferences as
+                        <p>Leverages local GPU/CPU power to deliver live AI inferences as you navigate slides, enabling an interactive workflow.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section id="workflow">
+            <div class="container">
+                <h2 class="animate-on-scroll">The OnSight Workflow</h2>
+                <div class="workflow-grid animate-on-scroll">
+                    <figure class="workflow-item">
+                        <img src="Images/flow.png" alt="Pathologist viewing a slide on a computer."/>
+                        <figcaption>The Onsight companion offers a solution by enabling real-time, local AI inference directly from the screen capture of any standard WSI viewer. The OnSight workflow is initiated when the user captures a Region of Interest within any standard slide viewer. The raw image data from this ROI is then processed by OnSight's AI algorithms, and the real-time output is displayed as an overlay on the graphical user interface. The inference results overload in real time and the software runs locally to ensure privacy.
+</figcaption>
+                    </figure>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" style="background-color: var(--navy-bg);">
+            <div class="container">
+                <h2 class="animate-on-scroll">See It In Action</h2>
+                <div class="video-wrapper animate-on-scroll">
+                    <iframe src="https://player.vimeo.com/video/1130059716" 
+                            title="OnSight Demo Video" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture"s
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+<section id="applications">
+            <div class="container">
+                <h2 class="animate-on-scroll">Example Use Cases</h2>
+                <p class="animate-on-scroll" style="max-width: 800px; margin-bottom: 80px;">
+                    OnSight comes with a suite of pre-trained models to assist with common histopathological tasks. Users can easily switch between models to fit their needs.
+                </p>
+                
+                <div class="application-item animate-on-scroll">
+                    <div class="app-text">
+                        <h3>Brain Tumor Classification</h3>
+                        <p>Utilizes a powerful Vision Transformer (ViT) to provide real-time classification of common brain tumor patterns (glial, meningiothelial, etc.) on H&E slides, guiding initial diagnosis.</p>
+                    </div>
+                    <div class="app-mockup">
+                        <div class="browser-mockup">
+                            <img src="Images/function/classification.png" alt="Tumor classification screenshot">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="application-item animate-on-scroll">
+                    <div class="app-text">
+                        <h3>Automated Mitosis Counting</h3>
+                        <p>Objectify tumor grading by automatically detecting and counting mitotic figures in real-time. Calibrate results to physical area (mm²) for reproducible, report-ready metrics.</p>
+                    </div>
+                    <div class="app-mockup">
+                        <div class="browser-mockup">
+                             <img src="Images/function/Mitosis.png" alt="Mitosis detection screenshot">
+s                      </div>
+                    </div>
+                </div>
+
+                <div class="application-item animate-on-scroll">
+                    <div class="app-text">
+                        <h3>IHC Quantification</h3>
+                        <p>A YOLO-based model segments and counts Ki-67 positive and negative nuclei, providing a rapid and objective proliferation index. Includes controls for overlay transparency to aid interpretation.</p>
+D                    </div>
+                    <div class="app-mockup">
+                        <div class="browser-mockup">
+                            <img src="Images/function/Ki67.png" alt="IHC Ki67 quantification screenshot">
+                        </div>
+                  _  </div>
+                </div>
+
+                <div class="application-item animate-on-scroll">
+D                  <div class="app-text">
+                        <h3>Interactive AI Chat</h3>
+                        <p>Integrates a Vision-Language Model (HuaTuo) that supports natural-language queries about the current image. Ask questions like, "What feature makes this glial?" to get deeper, interpretable insights from the AI.</p>
+                    </div>
+                    <div class="app-mockup">
+                        <div class="browser-mockup">
+                            <img src="Images/function/Chat.png" alt="Interactive AI chat screenshot">
+s                      </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="team" style="background-color: var(--navy-bg);">
+D          <div class="container" style="text-align: center;">
+                <h2 class="animate-on-scroll" style="justify-content: center;">The Team</h2>
+                <p class="animate-on-scroll">OnSight is proudly developed by the Diamandis Lab, a multidisciplinary team of pathologists, scientists, and engineers.</p>
+                <div class="animate-on-scroll" style="margin-top: 40px;">
+                    <a href="https://www.diamandis.org/" target="_blank" class="btn">Meet The Researchers</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container" style="max-width: 800px;">
+                <h2 class="animate-on-scroll">Common Questions</h2>
+                <div class="faq-accordion animate-on-scroll">
+                    <details>
+                        <summary>What are the system requirements?</summary>
+                        <div class="faq-content"><p>For optimal real-time performance, a Windows PC with a dedicated NVIDIA GPU (RTX 20-series or newer) is recommended. The software remains functional on CPU-only systems with a slight delay in inference.</p></div>
+                    </details>
+        _           <details>
+                        <summary>Can I use my own AI models?</summary>
+                        <div class="faq-content"><p>The current version is distributed with the pre-packaged, validated models. We are actively working on a framework to allow users to easily integrate their own custom models in future releases.</p></div>
+                    </details>
+                    <details>
+                        <summary>What is the current status of OnSight regarding clinical diagnostic use?</summary>
+                        <div class="faq-content"><p>OnSight is an experimental and research tool that is intended to support future clinical applications but has not yet been validated for clinical diagnostic use. At this stage, it is provided strictly for research, educational, and investigational purposes.</p></div>
+                    </details>
+                </div>
+            </div>
+        </section>
+        
+                                <section class="cta-section">
+            <div class="container">
+                <h2 class="animate-on-scroll">Ready to Augment Your Workflow?</h2>
+s              <p class="animate-on-scroll">Download the latest version of OnSight for Windows. It’s free, secure, and ready to use in minutes.</p>
+                
+                <div class="button-group animate-on-scroll">
+                    <a href="YOUR_GPU_LINK_HERE" target="_blank" class="btn" style="padding: 20px 40px; font-size: 1.2rem;">Download (GPU Recommended)</a>
+                    <a href="YOUR_CPU_LINK_HERE" target="_blank" class="btn-secondary">Download (CPU)</a>
+                </div>
+    s       </div>
+        </section>
+                            </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Phedias Diamandis, et al. All Rights Reserved.</p>
+            <p>A collaboration between the University Health Network & the University of Toronto</p>
+            <div class="footer-logo-bar">
+                <img src="Images/Institution/lmp.png" alt="University of Toronto LMP Logo">
+s              <img src="Images/Institution/princess.png" alt="Princess Margaret Cancer Centre Logo">
+                <img src="Images/Institution/uhn.png" alt="University Health Network Logo">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+  s         const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener("scroll", function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > navbar.offsetHeight) {
+                    navbar.style.top = `-${navbar.offsetHeight}px`;
+                } else {
+                    navbar.style.top = "0";
+s              }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, false);
+        });
+    </script>
+</body>
+
+</html>
 
 
 
