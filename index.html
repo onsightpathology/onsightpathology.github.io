@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+*-6<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>OnSight | A Real-Time Computational Pathology Companion</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400&display=swap');
+
 
         :root {
             --dark-navy: #0a0f1d;
@@ -62,6 +63,7 @@
             display: flex;
             align-items: center;
             padding: var(--nav-height) 0;
+            /* --- This is the updated line --- */
             background-image: linear-gradient(rgba(10, 15, 29, 0.85), rgba(10, 15, 29, 0.85)), url('Images/Institution/sample_icon.ico');
             background-size: cover;
             background-position: center;
@@ -84,68 +86,74 @@
         .feature-card .icon { color: var(--accent-cyan); margin-bottom: 20px; width: 48px; height: 48px; }
         .feature-card h3 { font-size: 1.2rem; color: var(--white); margin-bottom: 10px; }
         
+
         /* --- Video Demo Section --- */
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 8px; box-shadow: 0 20px 50px var(--shadow-color); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* --- Applications Section with a Clean, Separated Layout --- */
+/* --- Applications Section with a Clean, Separated Layout --- */
         .application-item {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
+            grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
+            gap: 50px; /* Adds a healthy space between the columns */
             align-items: center;
             margin-bottom: 100px;
         }
 
+        /* We don't need special column rules for the base classes anymore */
         .app-text {
             text-align: left;
         }
 
+        /* Remove the background from the text paragraph for a cleaner look */
         .app-text p {
             background-color: transparent;
             padding: 0;
             box-shadow: none;
-            color: var(--slate);
+            color: var(--slate); /* Use the standard paragraph text color */
         }
 
+        /* --- Styles for alternating items (image on left, text on right) --- */
         .application-item:nth-child(even) {
-            direction: rtl;
+            direction: rtl; /* This is a clever trick to reverse the column order */
         }
 
         .application-item:nth-child(even) .app-text {
-            direction: ltr;
+            direction: ltr; /* Reset text direction so it reads normally */
             text-align: right;
         }
-
         .workflow-item img {
-            width: 100%;
-            max-width: 2000px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: 5px;
-        }
+        width: 100%;       /* make image smaller */
+        max-width: 2000px; /* prevents it from being too big */
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 5px;
+        
 
+        }
+        /* The browser mockup style remains the same */
         .browser-mockup {
-            border: 2px solid var(--light-navy-bg);
-            border-radius: 8px;
-            background: #000;
-            padding: 25px 10px 10px 10px;
-            position: relative;
-            box-shadow: 0 20px 50px var(--shadow-color);
-            max-width: 500px;
-            margin: 0 auto;
-            aspect-ratio: 12 / 9;
-            overflow: hidden;
+        border: 2px solid var(--light-navy-bg);
+        border-radius: 8px;
+        background: #000;
+        padding: 25px 10px 10px 10px;
+        position: relative;
+        box-shadow: 0 20px 50px var(--shadow-color);
+        max-width: 500px;
+        margin: 0 auto;
+        aspect-ratio: 12 / 9; /* Keeps all boxes consistent */
+        overflow: hidden;
         }
 
         .browser-mockup img {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-            border-radius: 4px;
-            display: block;
+        width: 100%;
+        height: 100%;   /* 🔑 Forces stretching to fill height */
+        object-fit: fill; /* 🔑 Stretches the image instead of preserving ratio */
+        border-radius: 4px;
+        display: block;
         }
+
 
         /* --- FAQ Accordion --- */
         .faq-accordion details { background: var(--navy-bg); border-radius: 4px; margin-bottom: 10px; border: 1px solid var(--light-navy-bg); }
@@ -199,14 +207,7 @@
                 <div class="animate-on-scroll"><h3>A Real-Time platform-agnostic Pathology Companion.</h3></div>
                 <div class="animate-on-scroll" style="transition-delay: 100ms;"><h1>Bring AI Insights Directly To Your Workflow.</h1></div>
                 <div class="animate-on-scroll" style="transition-delay: 200ms;"><p class="subtitle">OnSight is a standalone, vendor-agnostic software that bridges the gap between powerful AI models and the daily workflow of pathologists, offering real-time analysis without compromising data privacy.</p></div>
-                
-                <div class="animate-on-scroll" style="transition-delay: 300ms;">
-                    <!-- GPU multi-download button -->
-                    <button id="downloadGPUHero" class="btn">Download (GPU)</button>
-
-                    <!-- CPU stays as a normal link -->
-                    <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight/OnSightPathologyInstaller_CPUv1.0.exe" target="_blank" class="btn" style="color: var(--slate); border-color: var(--slate); margin-left: 15px;">Download (CPU)</a>
-                </div>
+                <div class="animate-on-scroll" style="transition-delay: 300ms;"><a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight/OnSightPathologyInstaller.OLD.exe" target="_blank" class="btn">Download v1.0</a></div>
             </div>
         </section>
 
@@ -249,7 +250,7 @@
                     <figure class="workflow-item">
                         <img src="Images/flow.png" alt="Pathologist viewing a slide on a computer."/>
                         <figcaption>The Onsight companion offers a solution by enabling real-time, local AI inference directly from the screen capture of any standard WSI viewer. The OnSight workflow is initiated when the user captures a Region of Interest within any standard slide viewer. The raw image data from this ROI is then processed by OnSight's AI algorithms, and the real-time output is displayed as an overlay on the graphical user interface. The inference results overload in real time and the software runs locally to ensure privacy.
-                        </figcaption>
+</figcaption>
                     </figure>
 
                 </div>
@@ -270,7 +271,7 @@
             </div>
         </section>
 
-        <section id="applications">
+<section id="applications">
             <div class="container">
                 <h2 class="animate-on-scroll">Example Use Cases</h2>
                 <p class="animate-on-scroll" style="max-width: 800px; margin-bottom: 80px;">
@@ -362,14 +363,7 @@
             <div class="container">
                 <h2 class="animate-on-scroll">Ready to Augment Your Workflow?</h2>
                 <p class="animate-on-scroll">Download the latest version of OnSight for Windows. It’s free, secure, and ready to use in minutes.</p>
-                
-                <div class="animate-on-scroll">
-                    <!-- GPU multi-download button (bottom section) -->
-                    <button id="downloadGPUCta" class="btn" style="padding: 20px 40px; font-size: 1.2rem;">Download (GPU)</button>
-
-                    <!-- CPU stays the same -->
-                    <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight/OnSightPathologyInstaller_CPUv1.0.exe" target="_blank" class="btn" style="padding: 20px 40px; font-size: 1.2rem; color: var(--slate); border-color: var(--slate); margin-left: 15px;">Download (CPU)</a>
-                </div>
+                <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight/OnSightPathologyInstaller.OLD.exe" target="_blank" class="btn animate-on-scroll" style="padding: 20px 40px; font-size: 1.2rem;">Download OnSight</a>
             </div>
         </section>
     </main>
@@ -388,7 +382,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // --- 1. scroll reveal animation ---
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -404,7 +397,6 @@
                 observer.observe(el);
             });
 
-            // --- 2. navbar hide/show on scroll ---
             let lastScrollTop = 0;
             const navbar = document.querySelector('.navbar');
             window.addEventListener("scroll", function() {
@@ -416,49 +408,13 @@
                 }
                 lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             }, false);
-
-            // --- 3. multi-file GPU download (NEW) ---
-            // These are the 3 GPU-related installer parts 
-            const gpuFiles = [
-                "https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight_gpu/OnSightPathologyInstaller-1.bin",
-                "https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight_gpu/OnSightPathologyInstaller-2.bin",
-                "https://github.com/onsightpathology/onsightpathology.github.io/releases/download/onsight_gpu/OnSightPathologyInstaller.exe"
-            ];
-
-            // helper to trigger a download programmatically
-            function triggerDownload(url) {
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = ''; // hint browser this is a download
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            }
-
-            // click handler to download all GPU files
-            function downloadAllGpuFiles() {
-                gpuFiles.forEach(fileUrl => {
-                    triggerDownload(fileUrl);
-                });
-                // Browser may show "this site is trying to download multiple files"
-                // User must allow; that's expected.
-            }
-
-            // bind both GPU buttons
-            const heroBtn = document.getElementById('downloadGPUHero');
-            if (heroBtn) {
-                heroBtn.addEventListener('click', downloadAllGpuFiles);
-            }
-
-            const ctaBtn = document.getElementById('downloadGPUCta');
-            if (ctaBtn) {
-                ctaBtn.addEventListener('click', downloadAllGpuFiles);
-            }
-
         });
     </script>
 </body>
+
 </html>
+
+
 
 
 
