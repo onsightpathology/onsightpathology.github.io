@@ -57,6 +57,64 @@
         .nav-links a:hover { color: var(--accent-cyan); }
 
         /* --- Hero Section --- */
+            /* --- Preprint Badge Style --- */
+        .preprint-link-container {
+            margin-top: 35px;
+            margin-bottom: 10px; /* 在按钮上方留出一点空间 */
+            display: flex; /* 确保居左对齐，如果想居中可以改为 justify-content: center; */
+        }
+        
+        .preprint-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 24px;
+            background: rgba(10, 15, 29, 0.6); /* 半透明背景 */
+            border: 1px solid var(--accent-cyan); /* 青色边框 */
+            border-radius: 50px; /* 完整的胶囊圆角 */
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 一个微妙的背景光晕效果 */
+        .preprint-badge::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan-tint), transparent);
+            transition: left 0.5s;
+        }
+        
+        .preprint-badge:hover::before {
+            left: 100%; /* 鼠标划过时，光影扫过 */
+        }
+        
+        .preprint-badge:hover {
+            background: var(--accent-cyan-tint); /* 鼠标悬停背景变亮 */
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4); /* 强烈的青色发光效果 */
+            transform: translateY(-2px); /* 轻微上浮 */
+        }
+        
+        .badge-icon {
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+        }
+        
+        .badge-text {
+            color: var(--light-slate);
+            font-family: var(--mono-font); /* 使用科技感字体 */
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+        
+        .badge-text span {
+            color: var(--accent-cyan); /* 强调 arXiv 编号 */
+            font-weight: 600;
+        }
         .hero {
             min-height: 100vh;
             display: flex;
@@ -191,8 +249,6 @@
         <div class="container nav-wrapper">
             <a href="#" class="logo">OnSight</a>
             <ul class="nav-links">
-                <li><a href="https://arxiv.org/abs/2512.04187" target="_blank">Paper</a></li> 
-                
                 <li><a href="#features">Features</a></li>
                 <li><a href="#workflow">Workflow</a></li>
                 <li><a href="#demo">Demo</a></li>
@@ -208,9 +264,15 @@
                 <div class="animate-on-scroll"><h3>A Real-Time platform-agnostic Pathology Companion.</h3></div>
                 <div class="animate-on-scroll" style="transition-delay: 100ms;"><h1>Bring AI Insights Directly To Your Workflow.</h1></div>
                 <div class="animate-on-scroll" style="transition-delay: 200ms;"><p class="subtitle">OnSight is a standalone, vendor-agnostic software that bridges the gap between powerful AI models and the daily workflow of pathologists, offering real-time analysis without compromising data privacy.</p></div>
-                
+                <a href="https://arxiv.org/abs/2512.04187" target="_blank" class="preprint-badge">
+                    <div class="badge-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                    </div>
+                    <div class="badge-text">
+                        Read our latest research preprint: <span>arXiv:2512.04187 &rarr;</span>
+                    </div>
+                </a>
                 <div class="animate-on-scroll" style="transition-delay: 300ms;">
-                    <a href="https://arxiv.org/abs/2512.04187" target="_blank" style="color: var(--accent-cyan); font-family: var(--mono-font); text-decoration: none; font-size: 0.95rem; border-bottom: 1px dashed var(--accent-cyan);">Read the Preprint (arXiv:2512.04187) &nearr;</a>
                     <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/OnSight_Release_v1.1/OnSightPathologyInstaller-gpu.exe" target="_blank" class="btn">Download (GPU)</a>
                     <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/OnSight_Release_v1.1/OnSightPathologyInstaller-cpu.exe" target="_blank" class="btn" style="color: var(--slate); border-color: var(--slate); margin-left: 15px;">Download (CPU)</a>
                 </div>
@@ -423,6 +485,31 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
