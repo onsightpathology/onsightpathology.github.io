@@ -60,8 +60,8 @@
             /* --- Preprint Badge Style --- */
         .preprint-link-container {
             margin-top: 35px;
-            margin-bottom: 10px; /* 在按钮上方留出一点空间 */
-            display: flex; /* 确保居左对齐，如果想居中可以改为 justify-content: center; */
+            margin-bottom: 10px; 
+            display: flex; 
         }
         
         .preprint-badge {
@@ -69,16 +69,16 @@
             align-items: center;
             gap: 12px;
             padding: 10px 24px;
-            background: rgba(10, 15, 29, 0.6); /* 半透明背景 */
-            border: 1px solid var(--accent-cyan); /* 青色边框 */
-            border-radius: 50px; /* 完整的胶囊圆角 */
+            background: rgba(10, 15, 29, 0.6); 
+            border: 1px solid var(--accent-cyan); 
+            border-radius: 50px; 
             text-decoration: none;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        /* 一个微妙的背景光晕效果 */
+
         .preprint-badge::before {
             content: '';
             position: absolute;
@@ -89,13 +89,13 @@
         }
         
         .preprint-badge:hover::before {
-            left: 100%; /* 鼠标划过时，光影扫过 */
+            left: 100%; 
         }
         
         .preprint-badge:hover {
-            background: var(--accent-cyan-tint); /* 鼠标悬停背景变亮 */
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4); /* 强烈的青色发光效果 */
-            transform: translateY(-2px); /* 轻微上浮 */
+            background: var(--accent-cyan-tint); 
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4); 
+            transform: translateY(-2px); 
         }
         
         .badge-icon {
@@ -106,13 +106,13 @@
         
         .badge-text {
             color: var(--light-slate);
-            font-family: var(--mono-font); /* 使用科技感字体 */
+            font-family: var(--mono-font); 
             font-size: 0.95rem;
             font-weight: 400;
         }
         
         .badge-text span {
-            color: var(--accent-cyan); /* 强调 arXiv 编号 */
+            color: var(--accent-cyan);
             font-weight: 600;
         }
         .hero {
@@ -176,13 +176,13 @@
             flex-wrap: wrap;
         }
 
-        /* 统一按钮高度和间距 */
+
         .hero .btn, .cta-section .btn {
             margin-top: 0 !important; 
             margin-left: 0 !important;
         }
 
-        /* 针对移动端的居中处理 */
+
         @media (max-width: 768px) {
             .download-container { justify-content: center; }
             .download-group { align-items: center; }
@@ -317,8 +317,8 @@
                         <div class="download-group">
                             <span class="group-label">Windows</span>
                             <div class="btn-group">
-                                <a href="YOUR_WINDOWS_GPU_LINK" target="_blank" class="btn">GPU Edition</a>
-                                <a href="YOUR_WINDOWS_CPU_LINK" target="_blank" class="btn" style="color: var(--slate); border-color: var(--slate);">CPU Edition</a>
+                                <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/OnSight_Release_v1.1/OnSightPathologyInstaller-gpu.exe" target="_blank" class="btn">GPU Edition</a>
+                                <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/OnSight_Release_v1.1/OnSightPathologyInstaller-cpu.exe" target="_blank" class="btn" style="color: var(--slate); border-color: var(--slate);">CPU Edition</a>
                             </div>
                         </div>
 
@@ -497,8 +497,8 @@
                     <div class="download-group" style="align-items: center;">
                         <span class="group-label">Windows</span>
                         <div class="btn-group">
-                            <a href="YOUR_WINDOWS_GPU_LINK" target="_blank" class="btn" style="padding: 15px 30px;">GPU</a>
-                            <a href="YOUR_WINDOWS_CPU_LINK" target="_blank" class="btn" style="padding: 15px 30px; color: var(--slate); border-color: var(--slate);">CPU</a>
+                            <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/OnSight_Release_v1.1/OnSightPathologyInstaller-gpu.exe" target="_blank" class="btn" style="padding: 15px 30px;">GPU</a>
+                            <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/OnSight_Release_v1.1/OnSightPathologyInstaller-cpu.exe" target="_blank" class="btn" style="padding: 15px 30px; color: var(--slate); border-color: var(--slate);">CPU</a>
                         </div>
                     </div>
 
