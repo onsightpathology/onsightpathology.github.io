@@ -56,200 +56,205 @@
         .nav-links a { color: var(--light-slate); text-decoration: none; font-size: 0.9rem; font-family: var(--mono-font); transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--accent-cyan); }
 
-        /* --- Hero Section --- */
-            /* --- Preprint Badge Style --- */
-        .preprint-link-container {
-            margin-top: 35px;
-            margin-bottom: 10px; 
-            display: flex; 
-        }
+        /* --- Hero Section & Badges --- */
+        .preprint-link-container { margin-top: 35px; margin-bottom: 10px; display: flex; }
         
         .preprint-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 24px;
-            background: rgba(10, 15, 29, 0.6); 
-            border: 1px solid var(--accent-cyan); 
-            border-radius: 50px; 
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            display: inline-flex; align-items: center; gap: 12px; padding: 10px 24px;
+            background: rgba(10, 15, 29, 0.6); border: 1px solid var(--accent-cyan); 
+            border-radius: 50px; text-decoration: none; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
         }
-        
-
         .preprint-badge::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, var(--accent-cyan-tint), transparent);
             transition: left 0.5s;
         }
-        
-        .preprint-badge:hover::before {
-            left: 100%; 
-        }
-        
+        .preprint-badge:hover::before { left: 100%; }
         .preprint-badge:hover {
             background: var(--accent-cyan-tint); 
             box-shadow: 0 0 20px rgba(100, 255, 218, 0.4); 
             transform: translateY(-2px); 
         }
+        .badge-icon { color: var(--accent-cyan); display: flex; align-items: center; }
+        .badge-text { color: var(--light-slate); font-family: var(--mono-font); font-size: 0.95rem; font-weight: 400; }
+        .badge-text span { color: var(--accent-cyan); font-weight: 600; }
         
-        .badge-icon {
-            color: var(--accent-cyan);
-            display: flex;
-            align-items: center;
-        }
-        
-        .badge-text {
-            color: var(--light-slate);
-            font-family: var(--mono-font); 
-            font-size: 0.95rem;
-            font-weight: 400;
-        }
-        
-        .badge-text span {
-            color: var(--accent-cyan);
-            font-weight: 600;
-        }
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: var(--nav-height) 0;
-            /* --- This is the updated line --- */
+            min-height: 100vh; display: flex; align-items: center; padding: var(--nav-height) 0;
             background-image: linear-gradient(rgba(10, 15, 29, 0.85), rgba(10, 15, 29, 0.85)), url('Images/Institution/sample_icon.ico');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
         }
 
         .hero h1 { font-size: clamp(40px, 8vw, 80px); margin: 0; color: var(--white); font-weight: 700; }
         .hero h3 { font-size: clamp(20px, 5vw, 32px); color: var(--accent-cyan); font-family: var(--mono-font); margin-top: 10px; }
         .hero .subtitle { max-width: 600px; margin-top: 30px; font-size: 1.1rem; }
-        .btn { display: inline-block; padding: 14px 28px; border-radius: 4px; text-decoration: none; font-family: var(--mono-font); font-weight: 400; transition: all 0.3s ease; cursor: pointer; border: 1px solid var(--accent-cyan); color: var(--accent-cyan); background: transparent; font-size: 1rem; margin-top: 40px; }
+        
+        /* --- Standard Button Style --- */
+        .btn { 
+            display: inline-block; padding: 14px 28px; border-radius: 4px; text-decoration: none; 
+            font-family: var(--mono-font); font-weight: 400; transition: all 0.3s ease; cursor: pointer; 
+            border: 1px solid var(--accent-cyan); color: var(--accent-cyan); background: transparent; 
+            font-size: 1rem; 
+        }
         .btn:hover { background-color: var(--accent-cyan-tint); transform: translateY(-3px); }
+
+        /* ========================================= */
+        /* --- Dropdown Downloads Layout (NEW) --- */
+        /* ========================================= */
+        .hero-downloads {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 35px;
+            align-items: flex-start;
+        }
+
+        .cta-section .hero-downloads {
+            align-items: center;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            background-color: var(--accent-cyan-tint);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            padding: 14px 28px;
+            font-family: var(--mono-font);
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            list-style: none; /* Hide default HTML details arrow */
+        }
+        
+        .dropdown-btn::-webkit-details-marker {
+            display: none; /* Safari fix */
+        }
+
+        .dropdown-btn:hover {
+            background-color: rgba(100, 255, 218, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background-color: var(--navy-bg);
+            min-width: 320px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border-radius: 6px;
+            z-index: 1000;
+            padding: 10px 0;
+            border: 1px solid var(--light-navy-bg);
+            animation: fadeIn 0.2s ease;
+        }
+
+        .cta-section .dropdown-content {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .dropdown-group {
+            padding: 15px 20px;
+        }
+
+        .dropdown-group:not(:last-child) {
+            border-bottom: 1px solid var(--light-navy-bg);
+        }
+
+        .dropdown-group-title {
+            display: block;
+            font-family: var(--mono-font);
+            font-size: 0.8rem;
+            color: var(--slate);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .dropdown-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .dropdown-links a {
+            color: var(--light-slate);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            border: 1px solid var(--slate);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            flex: 1;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .dropdown-links a:hover {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            background-color: rgba(100, 255, 218, 0.05);
+        }
+
+        /* --- WSI Specific Link (Under Dropdown) --- */
+        .wsi-link-btn {
+            background: transparent;
+            color: var(--light-slate);
+            border: 1px dashed var(--slate);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            font-family: var(--mono-font);
+            font-size: 0.9rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .wsi-link-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background-color: rgba(100, 255, 218, 0.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* --- Main Sections --- */
         section { padding: 100px 0; }
         
-        /* --- Features Section (Redesigned with SVG Icons) --- */
         .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .feature-card { background-color: var(--navy-bg); padding: 30px; border-radius: 6px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -15px var(--shadow-color); }
         .feature-card .icon { color: var(--accent-cyan); margin-bottom: 20px; width: 48px; height: 48px; }
         .feature-card h3 { font-size: 1.2rem; color: var(--white); margin-bottom: 10px; }
         
-
-        /* --- Video Demo Section --- */
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 8px; box-shadow: 0 20px 50px var(--shadow-color); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        /* 下载分组容器 */
-        .download-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .download-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .group-label {
-            font-family: var(--mono-font);
-            font-size: 0.8rem;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-
-        .hero .btn, .cta-section .btn {
-            margin-top: 0 !important; 
-            margin-left: 0 !important;
-        }
-
-
-        @media (max-width: 768px) {
-            .download-container { justify-content: center; }
-            .download-group { align-items: center; }
-        }
-/* --- Applications Section with a Clean, Separated Layout --- */
-        .application-item {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
-            gap: 50px; /* Adds a healthy space between the columns */
-            align-items: center;
-            margin-bottom: 100px;
-        }
-
-        /* We don't need special column rules for the base classes anymore */
-        .app-text {
-            text-align: left;
-        }
-
-        /* Remove the background from the text paragraph for a cleaner look */
-        .app-text p {
-            background-color: transparent;
-            padding: 0;
-            box-shadow: none;
-            color: var(--slate); /* Use the standard paragraph text color */
-        }
-
-        /* --- Styles for alternating items (image on left, text on right) --- */
-        .application-item:nth-child(even) {
-            direction: rtl; /* This is a clever trick to reverse the column order */
-        }
-
-        .application-item:nth-child(even) .app-text {
-            direction: ltr; /* Reset text direction so it reads normally */
-            text-align: right;
-        }
-        .workflow-item img {
-        width: 100%;      /* make image smaller */
-        max-width: 2000px; /* prevents it from being too big */
-        height: auto;
-        display: block;
-        margin: 0 auto;
-        border-radius: 5px;
         
-
-        }
-        /* The browser mockup style remains the same */
-        .browser-mockup {
-        border: 2px solid var(--light-navy-bg);
-        border-radius: 8px;
-        background: #000;
-        padding: 25px 10px 10px 10px;
-        position: relative;
-        box-shadow: 0 20px 50px var(--shadow-color);
-        max-width: 500px;
-        margin: 0 auto;
-        aspect-ratio: 12 / 9; /* Keeps all boxes consistent */
-        overflow: hidden;
-        }
-
-        .browser-mockup img {
-        width: 100%;
-        height: 100%;    /* 🔑 Forces stretching to fill height */
-        object-fit: fill; /* 🔑 Stretches the image instead of preserving ratio */
-        border-radius: 4px;
-        display: block;
-        }
-
+        /* --- Applications Section --- */
+        .application-item { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; align-items: center; margin-bottom: 100px; }
+        .app-text { text-align: left; }
+        .app-text p { background-color: transparent; padding: 0; box-shadow: none; color: var(--slate); }
+        .application-item:nth-child(even) { direction: rtl; }
+        .application-item:nth-child(even) .app-text { direction: ltr; text-align: right; }
+        
+        .workflow-item img { width: 100%; max-width: 2000px; height: auto; display: block; margin: 0 auto; border-radius: 5px; }
+        
+        .browser-mockup { border: 2px solid var(--light-navy-bg); border-radius: 8px; background: #000; padding: 25px 10px 10px 10px; position: relative; box-shadow: 0 20px 50px var(--shadow-color); max-width: 500px; margin: 0 auto; aspect-ratio: 12 / 9; overflow: hidden; }
+        .browser-mockup img { width: 100%; height: 100%; object-fit: fill; border-radius: 4px; display: block; }
 
         /* --- FAQ Accordion --- */
         .faq-accordion details { background: var(--navy-bg); border-radius: 4px; margin-bottom: 10px; border: 1px solid var(--light-navy-bg); }
@@ -274,10 +279,15 @@
         @media (max-width: 768px) {
             .navbar .nav-links { display: none; }
             .workflow-grid { grid-template-columns: 1fr; }
-            .application-item,
-            .application-item:nth-child(even) { display: flex; flex-direction: column; gap: 20px; }
+            .application-item, .application-item:nth-child(even) { display: flex; flex-direction: column; gap: 20px; }
             .app-text, .application-item:nth-child(even) .app-text { text-align: left; }
-            .app-text p { background-color: transparent; padding: 0; box-shadow: none; }
+            
+            /* Responsive Dropdown */
+            .hero-downloads { align-items: stretch; width: 100%; }
+            .dropdown { width: 100%; }
+            .dropdown-btn { width: 100%; justify-content: space-between; }
+            .dropdown-content { position: relative; width: 100%; left: 0; transform: none; top: 10px; margin-bottom: 20px; }
+            .wsi-link-btn { text-align: center; justify-content: center; width: 100%; }
         }
 
     </style>
@@ -292,6 +302,7 @@
                 <li><a href="#workflow">Workflow</a></li>
                 <li><a href="#demo">Demo</a></li>
                 <li><a href="#applications">Use-Cases</a></li>
+                <li><a href="#onsight-wsi">OnSight-WSI</a></li>
                 <li><a href="#team">Team</a></li>
             </ul>
         </div>
@@ -303,7 +314,7 @@
                 <div class="animate-on-scroll"><h3>A Real-Time platform-agnostic Pathology Companion.</h3></div>
                 <div class="animate-on-scroll" style="transition-delay: 100ms;"><h1>Bring AI Insights Directly To Your Workflow.</h1></div>
                 <div class="animate-on-scroll" style="transition-delay: 200ms;"><p class="subtitle">OnSight is a standalone, vendor-agnostic software that bridges the gap between powerful AI models and the daily workflow of pathologists, offering real-time analysis without compromising data privacy.</p></div>
-                <div class="animate-on-scroll" style="transition-delay: 250ms; margin-top: 30px; margin-bottom: 30px;">
+                <div class="animate-on-scroll" style="transition-delay: 250ms; margin-top: 30px;">
                     <a href="https://arxiv.org/abs/2512.04187" target="_blank" class="preprint-badge">
                         <div class="badge-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
@@ -313,31 +324,50 @@
                         </div>
                     </a>
                 </div>
-                    <div class="animate-on-scroll download-container" style="transition-delay: 300ms;">
-                        <div class="download-group">
-                            <span class="group-label">Windows</span>
-                            <div class="btn-group">
-                                <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank" class="btn">GPU Edition</a>
-                                <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank" class="btn" style="color: var(--slate); border-color: var(--slate);">CPU Edition</a>
-                            </div>
-                        </div>
 
-                        <div class="download-group">
-                            <span class="group-label">macOS</span>
-                            <div class="btn-group">
-                                <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Macbook/OnSightPathology_Mac(Apple_Silicon).zip&v=1.0.0&p=mac-silicon" target="_blank" class="btn" style="color: var(--slate); border-color: var(--slate);">Apple Silicon</a>
-                                <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Macbook/OnSightPathology_Mac(Intel).zip&v=1.0.0&p=mac-intel" target="_blank" class="btn" style="color: var(--slate); border-color: var(--slate);">Intel Chip</a>
+                <!-- ============================================================== -->
+                <!-- =================== 新版折叠菜单 & WSI 链接 =================== -->
+                <!-- ============================================================== -->
+                <div class="animate-on-scroll hero-downloads" style="transition-delay: 300ms;">
+                    
+                    <!-- 1. 折叠的 OnSight Pathology 下载列表 -->
+                    <details class="dropdown">
+                        <summary class="dropdown-btn">
+                            Download OnSight Pathology 
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </summary>
+                        <div class="dropdown-content">
+                            <div class="dropdown-group">
+                                <span class="dropdown-group-title">Windows</span>
+                                <div class="dropdown-links">
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank">GPU Edition</a>
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank">CPU Edition</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-group">
+                                <span class="dropdown-group-title">macOS</span>
+                                <div class="dropdown-links">
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Macbook/OnSightPathology_Mac(Apple_Silicon).zip&v=1.0.0&p=mac-silicon" target="_blank">Apple Silicon</a>
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Macbook/OnSightPathology_Mac(Intel).zip&v=1.0.0&p=mac-intel" target="_blank">Intel Chip</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-group">
+                                <span class="dropdown-group-title">Linux</span>
+                                <div class="dropdown-links">
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Linux/OnSightPathology_Linux.zip&v=1.0.0&p=linux" target="_blank">Ubuntu (Beta)</a>
+                                </div>
                             </div>
                         </div>
+                    </details>
 
-                        <div class="download-group">
-                            <span class="group-label">Linux</span>
-                            <div class="btn-group">
-                                <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Linux/OnSightPathology_Linux.zip&v=1.0.0&p=linux" target="_blank" class="btn" style="color: var(--slate); border-color: var(--slate);">Ubuntu (Beta)</a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- 2. OnSight-WSI 下载链接 (位于折叠下方) -->
+                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_WSI_v1.0.0/OnSightPathologyWSIInstaller.exe&v=1.0.0&p=WSI" target="_blank" class="wsi-link-btn">
+                        Download OnSight-WSI (Windows GPU)
+                    </a>
                 </div>
+                <!-- ============================================================== -->
+
+            </div>
         </section>
 
         <section id="intro">
@@ -378,10 +408,8 @@
                 <div class="workflow-grid animate-on-scroll">
                     <figure class="workflow-item">
                         <img src="Images/flow.png" alt="Pathologist viewing a slide on a computer."/>
-                        <figcaption>The Onsight companion offers a solution by enabling real-time, local AI inference directly from the screen capture of any standard WSI viewer. The OnSight workflow is initiated when the user captures a Region of Interest within any standard slide viewer. The raw image data from this ROI is then processed by OnSight's AI algorithms, and the real-time output is displayed as an overlay on the graphical user interface. The inference results overload in real time and the software runs locally to ensure privacy.
-</figcaption>
+                        <figcaption>The Onsight companion offers a solution by enabling real-time, local AI inference directly from the screen capture of any standard WSI viewer. The OnSight workflow is initiated when the user captures a Region of Interest within any standard slide viewer. The raw image data from this ROI is then processed by OnSight's AI algorithms, and the real-time output is displayed as an overlay on the graphical user interface. The inference results overload in real time and the software runs locally to ensure privacy.</figcaption>
                     </figure>
-
                 </div>
             </div>
         </section>
@@ -390,17 +418,12 @@
             <div class="container">
                 <h2 class="animate-on-scroll">See It In Action</h2>
                 <div class="video-wrapper animate-on-scroll">
-                    <iframe src="https://player.vimeo.com/video/1130059716" 
-                            title="OnSight Demo Video" 
-                            frameborder="0" 
-                            allow="autoplay; fullscreen; picture-in-picture" 
-                            allowfullscreen>
-                    </iframe>
+                    <iframe src="https://player.vimeo.com/video/1130059716" title="OnSight Demo Video" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
-<section id="applications">
+        <section id="applications">
             <div class="container">
                 <h2 class="animate-on-scroll">Example Use Cases</h2>
                 <p class="animate-on-scroll" style="max-width: 800px; margin-bottom: 80px;">
@@ -458,7 +481,17 @@
             </div>
         </section>
 
-        <section id="team" style="background-color: var(--navy-bg);">
+        <!-- WSI 介绍区域 (保留作为功能说明，去掉了重复的大按钮) -->
+        <section id="onsight-wsi" style="background-color: var(--navy-bg);">
+            <div class="container" style="text-align: center;">
+                <h2 class="animate-on-scroll" style="justify-content: center;">OnSight-WSI Extension</h2>
+                <p class="animate-on-scroll" style="max-width: 800px; margin: 0 auto;">
+                    <strong>OnSight-WSI</strong> is a dedicated Whole Slide Image extension built natively for Windows GPUs. It processes full-resolution slides (SVS, NDPI, TIFF) through a custom interactive viewer, enabling real-time, aligned overlays of <strong>HAVOC60 morphologic heterogeneity</strong> and <strong>RetinaNet-based mitosis detection</strong>. Download the extension from the links above to integrate it into your workflow.
+                </p>
+            </div>
+        </section>
+
+        <section id="team">
             <div class="container" style="text-align: center;">
                 <h2 class="animate-on-scroll" style="justify-content: center;">The Team</h2>
                 <p class="animate-on-scroll">OnSight is proudly developed by the Diamandis Lab, a multidisciplinary team of pathologists, scientists, and engineers.</p>
@@ -468,7 +501,7 @@
             </div>
         </section>
 
-        <section id="faq">
+        <section id="faq" style="background-color: var(--navy-bg);">
             <div class="container" style="max-width: 800px;">
                 <h2 class="animate-on-scroll">Common Questions</h2>
                 <div class="faq-accordion animate-on-scroll">
@@ -491,33 +524,46 @@
         <section class="cta-section">
             <div class="container">
                 <h2 class="animate-on-scroll">Ready to Augment Your Workflow?</h2>
-                <p class="animate-on-scroll">Download the latest version of OnSight for Windows. It’s free, secure, and ready to use in minutes.</p>
+                <p class="animate-on-scroll">Download the latest version of OnSight. It’s free, secure, and ready to use in minutes.</p>
                 
-                <div class="animate-on-scroll download-container" style="justify-content: center; margin-top: 50px;">
-                    <div class="download-group" style="align-items: center;">
-                        <span class="group-label">Windows</span>
-                        <div class="btn-group">
-                            <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank" class="btn" style="padding: 15px 30px;">GPU</a>
-                            <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank" class="btn" style="padding: 15px 30px; color: var(--slate); border-color: var(--slate);">CPU</a>
+                <!-- CTA 区域也同步使用同样的折叠和 WSI 布局 -->
+                <div class="animate-on-scroll hero-downloads" style="margin-top: 50px;">
+                    
+                    <details class="dropdown">
+                        <summary class="dropdown-btn">
+                            Download OnSight Pathology 
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </summary>
+                        <div class="dropdown-content">
+                            <div class="dropdown-group">
+                                <span class="dropdown-group-title">Windows</span>
+                                <div class="dropdown-links">
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank">GPU</a>
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank">CPU</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-group">
+                                <span class="dropdown-group-title">macOS</span>
+                                <div class="dropdown-links">
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Macbook/OnSightPathology_Mac(Apple_Silicon).zip&v=1.0.0&p=mac-silicon" target="_blank">M-Series</a>
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Macbook/OnSightPathology_Mac(Intel).zip&v=1.0.0&p=mac-intel" target="_blank">Intel</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-group">
+                                <span class="dropdown-group-title">Linux</span>
+                                <div class="dropdown-links">
+                                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Linux/OnSightPathology_Linux.zip&v=1.0.0&p=linux" target="_blank">Ubuntu Beta</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </details>
 
-                    <div class="download-group" style="align-items: center;">
-                        <span class="group-label">macOS</span>
-                        <div class="btn-group">
-                            <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Macbook/OnSightPathology_Mac(Apple_Silicon).zip&v=1.0.0&p=mac-silicon" target="_blank" class="btn" style="padding: 15px 30px; color: var(--slate); border-color: var(--slate);">M-Series</a>
-                            <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Macbook/OnSightPathology_Mac(Intel).zip&v=1.0.0&p=mac-intel" target="_blank" class="btn" style="padding: 15px 30px; color: var(--slate); border-color: var(--slate);">Intel</a>
-                        </div>
-                    </div>
+                    <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_WSI_v1.0.0/OnSightPathologyWSIInstaller.exe&v=1.0.0&p=WSI" target="_blank" class="wsi-link-btn">
+                        Download OnSight-WSI (Windows GPU)
+                    </a>
+                </div>
 
-                    <div class="download-group" style="align-items: center;">
-                        <span class="group-label">Linux</span>
-                        <div class="btn-group">
-                            <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Linux/OnSightPathology_Linux.zip&v=1.0.0&p=linux" target="_blank" class="btn" style="padding: 15px 30px; color: var(--slate); border-color: var(--slate);">Ubuntu Beta</a>
-                        </div>
-                    </div>
-                </div>
-                </div>
+            </div>
         </section>
     </main>
     
@@ -535,21 +581,19 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Animations Observer
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                     }
                 });
-            }, {
-                threshold: 0.1
-            });
+            }, { threshold: 0.1 });
 
             const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-            elementsToAnimate.forEach(el => {
-                observer.observe(el);
-            });
+            elementsToAnimate.forEach(el => observer.observe(el));
 
+            // Navbar hide on scroll down
             let lastScrollTop = 0;
             const navbar = document.querySelector('.navbar');
             window.addEventListener("scroll", function() {
@@ -561,67 +605,17 @@
                 }
                 lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             }, false);
+
+            // Close `<details>` dropdowns if clicked outside
+            document.addEventListener('click', function(event) {
+                const detailsElements = document.querySelectorAll('details.dropdown');
+                detailsElements.forEach(details => {
+                    if (details.hasAttribute('open') && !details.contains(event.target)) {
+                        details.removeAttribute('open');
+                    }
+                });
+            });
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
