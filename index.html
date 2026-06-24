@@ -365,6 +365,7 @@
             list-style: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
+            text-decoration: none;
         }
 
         .dropdown-btn::-webkit-details-marker { display: none; }
@@ -990,6 +991,8 @@
 
         <!-- Downloads -->
         <div class="hero-downloads fade-up" style="transition-delay:0.30s">
+            <!--
+            ─── Original multi-platform download dropdown (disabled, replaced by Zenodo link) ───
             <details class="dropdown">
                 <summary class="dropdown-btn">
                     Download OnSight Pathology
@@ -1000,7 +1003,7 @@
                         <span class="dropdown-group-title">Windows</span>
                         <div class="dropdown-links">
                             <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank">GPU Edition</a>
-                            <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_CPU.exe&v=1.0.0&p=windows_cpu" target="_blank">CPU Edition</a>
+                            <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/OnSight_Release_v1.1/OnSightPathologyInstaller-cpu.exe" target="_blank">CPU Edition</a>
                         </div>
                     </div>
                     <div class="dropdown-group">
@@ -1018,16 +1021,24 @@
                     </div>
                 </div>
             </details>
+
             <div class="download-notice">
-                Note: For Windows users, if model downloads fail during first launch,<br>
-                try running OnSight Pathology as Administrator and press Enter when <br>
+                ⚠️ For Windows users: If model downloads fail during first launch,
+                try running OnSight Pathology as Administrator and press Enter when
                 the terminal appears.
             </div>
-            
 
             <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_WSI_v1.0.0/OnSightPathologyWSIInstaller.exe&v=1.0.0&p=WSI" target="_blank" class="wsi-link-btn">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download OnSight-WSI (Windows GPU)
+            </a>
+            ─── End of original download block ───
+            -->
+
+            <!-- Unified Zenodo download link -->
+            <a href="https://zenodo.org/records/20818801" target="_blank" class="dropdown-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download OnSight Pathology on Zenodo
             </a>
         </div>
     </div>
@@ -1092,7 +1103,7 @@
         <h2 class="section-title fade-up">The OnSight Workflow</h2>
         <div class="workflow-item fade-up">
             <figure>
-                <img src="Images/flow.png" alt="Pathologist viewing a slide on a computer — OnSight workflow diagram"/>
+                <img src="Images/function/flow.png" alt="Pathologist viewing a slide on a computer — OnSight workflow diagram"/>
                 <figcaption>
                     <strong>OnSight Inference Pipeline.</strong>&ensp;
                     The OnSight companion enables real-time, local AI inference directly from screen capture of any standard WSI viewer. The workflow is initiated when the user captures a Region of Interest. Raw image data from the ROI is processed by OnSight's AI algorithms and the output is rendered as a live overlay on the GUI. Inference runs entirely on-device to ensure patient data privacy.
@@ -1187,7 +1198,7 @@
                 <div class="app-text-content">
                     <span class="app-fig-label">Application 04 &nbsp;/&nbsp; Quantification</span>
                     <h3>Single-Cell Phenotyping</h3>
-                    <p>A Cellpose-SAM module that segments and extracts a list of nuclear features for continuous cell phenotyping analysis and quantification in real time.</p>
+                    <p>A Cellpose-SAM module that segments and extracts a list of nuclear features for continuous analysis and quantification.</p>
                 </div>
                 <div class="app-mockup-frame">
                     <div class="app-mockup-topbar">
@@ -1310,6 +1321,8 @@
             <p>Download the latest version of OnSight. It's free, secure, and ready to use in minutes.</p>
 
             <div class="cta-downloads">
+                <!--
+                ─── Original CTA multi-platform download dropdown (disabled, replaced by Zenodo link) ───
                 <details class="dropdown">
                     <summary class="dropdown-btn">
                         Download OnSight Pathology
@@ -1320,7 +1333,7 @@
                             <span class="dropdown-group-title">Windows</span>
                             <div class="dropdown-links">
                                 <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_GPU.exe&v=1.0.0&p=windows_gpu" target="_blank">GPU</a>
-                                <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_v1.0.0_Windows/OnSightPathologyInstaller_CPU.exe&v=1.0.0&p=windows_cpu" target="_blank">CPU</a>
+                                <a href="https://github.com/onsightpathology/onsightpathology.github.io/releases/download/OnSight_Release_v1.1/OnSightPathologyInstaller-cpu.exe" target="_blank">CPU</a>
                             </div>
                         </div>
                         <div class="dropdown-group">
@@ -1342,6 +1355,14 @@
                 <a href="https://download-gate.hujinzheneric.workers.dev/dl?file=OnSightPathology_WSI_v1.0.0/OnSightPathologyWSIInstaller.exe&v=1.0.0&p=WSI" target="_blank" class="wsi-link-btn">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     Download OnSight-WSI (Windows GPU)
+                </a>
+                ─── End of original CTA download block ───
+                -->
+
+                <!-- Unified Zenodo download link -->
+                <a href="https://zenodo.org/records/20818801" target="_blank" class="dropdown-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download OnSight Pathology on Zenodo
                 </a>
             </div>
         </div>
